@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    
+    <meta name="description" content="一個讓主播在直播的時候，觀眾可以點歌自動撥放的系統">
+    <meta name="keywords" content="點歌,youtube,點歌系統,夏特稀,履歷表,夏特稀履歷表,夏特稀個人網站,資安,特殊選才,團隊,電腦,愛神閃靈,靈萌團隊,靈萌,Cutespirit,Cutespirt Team,TershiXia">
+    <meta name="author" content="夏特稀">
+    <meta name="copyright" content="靈萌團隊">
+    <meta http-equiv="Content-Language" content="zh-TW">
+    <!-- Facebook Meta property -->
+    <meta property="og:title" content="YouTube點歌系統" />
+    <meta property="og:description" content="一個讓主播在直播的時候，觀眾可以點歌自動撥放的系統" />
+    <meta property="og:image" content="https://tershi.com/images/img.png" />
+    <link rel="icon" href="/favicon.ico">
+  </head>
+  <body class="overflow-x-hidden m-0 p-0 bg-white dark:bg-gray-800 transition-colors duration-100">
+    <!-- Github Page 到 / 以外就會回傳 404，將 sessionStorage.redirect 取出來 -->
+	<script>
+    (function(){
+      let redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.href) {
+      history.replaceState(null, null, redirect);
+      }
+    })();
+    </script>
+    
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
