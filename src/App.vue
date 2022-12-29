@@ -1,19 +1,27 @@
 <!-- eslint-disable no-irregular-whitespace -->
 <template>
-  <div class="mx-auto pt-8 pl-5 pr-5 text-black dark:text-white transition-colors duration-100">
+  <div class="mx-auto pt-5 pl-5 pr-5 text-black dark:text-white transition-colors duration-100">
     <!-- navbar -->
-    <h1 class="inline-block text-left text-2xl" @click="$router.push('/')">YouTube 點歌系統(未完成)</h1>
+    <h1 class="inline-block text-left text-base sm:text-xl md:text-2xl" @click="$router.push('/')">YouTube 點歌系統(未完成)</h1>
 
     <!-- right -->
     <div class="inline absolute right-2">
-      <div class="relative right-10">
-        <div class="inline text-right text-2xl pr-4 hover:dark:text-gray-300" v-for="(item, key) in nav_list" :key="key">
+      <div class="relative right-2">
+        <div class="inline text-right text-base sm:text-xl md:text-2xl pr-4 hover:dark:text-gray-300" v-for="(item, key) in nav_list" :key="key">
           <router-link
             :to="item.path"
             >
             {{ item.name }}
             <!-- {{ t(`Navbar.${item.name}`) }} -->
           </router-link>
+        </div>
+
+        <!-- toggle dark mode & light mode -->
+        <div class="inline">
+          <button @click="toggleDarkMode()">
+            <font-awesome-icon :icon="darkMode? ['fas', 'moon']: ['fas', 'sun']" />
+          </button>
+          <!-- <p class="inline">　</p> -->
         </div>
       </div>
     </div>
@@ -114,6 +122,15 @@ export default {
         }, (response) => {
           this.$Progress.fail()
         })
+    }
+  },
+  watch: {
+    darkMode: function(val) {
+      if (val) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     }
   },
   mounted() {

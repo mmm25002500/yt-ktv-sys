@@ -14,6 +14,9 @@ import router from './routers'
 
 import VueProgressBar from '@aacassandra/vue3-progressbar'
 
+import './firebase'
+import { VueFire, VueFireDatabaseOptionsAPI } from 'vuefire'
+
 // 引入 Vue I18n
 import { createI18n } from 'vue-i18n'
 import zh_TW from './i18n/zh_TW' // 存放正體語系檔
@@ -28,7 +31,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 
 library.add(fas, fab, far)
-
+// console.log(initializeApp, getFirestore)
 // 建立多國語系
 const i18n = new createI18n({
   legacy: false,
@@ -62,4 +65,11 @@ app.use(router)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(VueProgressBar, options)
 app.use(i18n)
+
+app.use(VueFire, {
+  modules: [
+    VueFireDatabaseOptionsAPI()
+  ]
+})
+
 app.mount('#app')
