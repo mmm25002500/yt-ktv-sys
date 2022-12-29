@@ -1,0 +1,1 @@
+import{_ as e,c as t,o,a as s}from"./index-6597b6b5.js";const c={},n=s("p",{class:"text-center"},"找不到頁面喔",-1),a=[n];function r(_,d,p,i,l,f){return o(),t("div",null,a)}const m=e(c,[["render",r]]);export{m as default};
