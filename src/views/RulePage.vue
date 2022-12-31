@@ -1,6 +1,6 @@
-<template lang="">
+<template>
   <div>
-    <p class="text-center">找不到頁面喔</p>
+    <h1 class="text-xl">歡迎來到台規</h1>
   </div>
 </template>
 <script>
@@ -15,6 +15,6 @@ export default {
   }
 }
 </script>
-<style lang="">
+<style>
 
 </style>

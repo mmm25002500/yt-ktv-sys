@@ -8,9 +8,19 @@ const routes = [
     component: () => import('../views/HomePage.vue')
   },
   {
-    path: '/order',
+    path: '/order/:id',
     name: '點歌',
     component: () => import('../views/OrderSong.vue')
+  },
+  {
+    path: '/rule',
+    name: '社群規範和台規',
+    component: () => import('../views/RulePage.vue')
+  },
+  {
+    path: '/setting',
+    name: '設定頁面',
+    component: () => import('../views/SettingPage.vue')
   },
   {
     path: '/:pathMatch(.*)*',

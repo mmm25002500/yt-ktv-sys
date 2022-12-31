@@ -1,26 +1,22 @@
 <template>
   <div>
     <h1 class="text-md">USER:</h1>
-    <ul class="list-decimal pl-8">
-      <li v-for="(item, key) in Object.keys(items)" :key="key"> {{ item }}</li>
+    <ul class="list-decimal pl-8" v-if="items['getData'] === 'success'">
+      <li v-for="(item, key) in Object.keys(items['user'])" :key="key">
+        <router-link :to="`/order/`+item">
+          {{ item }}
+        </router-link>
+      </li>
     </ul>
 
     <br>
 
     <h1 class="text-md">VIDEO:</h1>
-    <ul class="list-decimal pl-8">
-      <li v-for="(item, key) in items['TershiXia']['videos']" :key="key">
-        {{ item.url }}
+    <ul class="list-decimal pl-8" v-if="items['getData'] === 'success'">
+      <li v-for="(item, key) in items['user']['TershiXia']['videos']" :key="key">
+        {{ item['video_info']['items'][0]['snippet']['title'] }}
       </li>
     </ul>
-    <br>
-    {{ items['TershiXia'] }}
-    <br>
-    {{ Object.keys(items) }}
-    <!-- <br>
-    <button @click="addVideos('TershiXia', 'hi')">新增影片</button>
-    <br>
-    <button @click="removeVideos('TershiXia', -1)">刪除</button> -->
     <br>
     <button
     @click="set(
@@ -28,46 +24,12 @@
     'TershiXia': {
       'username': 'TershiXia',
       'age': 20,
-      'videos': [
-        {
-          'title': 'video1',
-          'provider': {
-            'name': 'Marry',
-            'email': 'test@abc.com'
-          },
-          'url': 'https://www.youtube.com/watch?v=1'
-        },
-        {
-          'title': 'video2',
-          'provider': {
-            'name': 'Marry',
-            'email': 'test@abc.com'
-          },
-          'url': 'https://www.youtube.com/watch?v=2'
-        }
-      ]
+      'videos': []
     },
     'Andy': {
       'username': 'Andy',
       'age': 18,
-      'videos': [
-        {
-          'title': 'video1',
-          'provider': {
-            'name': 'Marry',
-            'email': 'test@abc.com'
-          },
-          'url': 'https://www.youtube.com/watch?v=1'
-        },
-        {
-          'title': 'video2',
-          'provider': {
-            'name': 'Marry',
-            'email': 'test@abc.com'
-          },
-          'url': 'https://www.youtube.com/watch?v=2'
-        }
-      ]
+      'videos': []
     }
   }
     )">更改資料</button>
@@ -89,16 +51,13 @@ export default {
     get() {
       return this.items
     }
-
-    // remove videos from video index
-    // removeVideos(username, index) {
-    //   const data = this.get()
-    //   data[username].videos.splice(index, 1)
-    //   set(dbRef(getDatabase(), 'user'), data)
-    // }
+  },
+  mounted() {
+    // when page is loaded
+    this.$Progress.finish()
   },
   firebase: {
-    items: dbRef(getDatabase(), 'user')
+    items: dbRef(getDatabase(), '/')
   }
 }
 </script>

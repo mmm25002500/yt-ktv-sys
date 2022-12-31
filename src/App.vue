@@ -1,51 +1,168 @@
 <!-- eslint-disable no-irregular-whitespace -->
 <template>
-  <div class="mx-auto pt-5 pl-5 pr-5 text-black dark:text-white transition-colors duration-100">
-    <!-- navbar -->
-    <h1 class="inline-block text-left text-base sm:text-xl md:text-2xl" @click="$router.push('/')">YouTube 點歌系統(未完成)</h1>
+  <div class="w-full h-full">
+    <div class="flex flex-no-wrap h-screen text-black">
+      <!-- Sidebar starts -->
+      <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
+      <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
 
-    <!-- right -->
-    <div class="inline absolute right-2">
-      <div class="relative right-2">
-        <div class="inline text-right text-base sm:text-xl md:text-2xl pr-4 hover:dark:text-gray-300" v-for="(item, key) in nav_list" :key="key">
-          <router-link
-            :to="item.path"
-            >
-            {{ item.name }}
-            <!-- {{ t(`Navbar.${item.name}`) }} -->
-          </router-link>
-        </div>
+      <!-- PC -->
+      <div class="w-64 absolute sm:relative bg-gray-100 dark:bg-gray-900 shadow md:h-full flex-col justify-between hidden sm:flex">
+          <div class="px-8">
+              <!-- ICON -->
+              <div class="h-16 w-full flex items-center text-black dark:text-white">
+                <h1 class="text-xl">
+                  {{ t('site_name') }}
+                </h1>
+              </div>
 
-        <!-- toggle dark mode & light mode -->
-        <div class="inline">
-          <button @click="toggleDarkMode()">
-            <font-awesome-icon :icon="darkMode? ['fas', 'moon']: ['fas', 'sun']" />
+              <!-- Navlink -->
+              <ul class="mt-12">
+                  <li class="flex w-full justify-between dark:text-gray-300 cursor-pointer items-center mb-6" v-for="(item, key) in nav_list" :key="key">
+                    <router-link
+                      :to="item.path"
+                      class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+                      >
+                        <!-- icon: class="icon icon-tabler icon-tabler-grid" width="18" height="18"  -->
+                        <font-awesome-icon :icon="item.icon" class="text-gray-700" />
+                        <span class="text-sm ml-2">{{ t(`Navbar.`+item.name) }}</span>
+                    </router-link>
+                    <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">5</div>
+                  </li>
+              </ul>
+
+              <!-- search -->
+              <!-- <div class="flex justify-center mt-48 mb-4 w-full">
+                  <div class="relative">
+                      <div class="text-gray-300 absolute ml-4 inset-0 m-auto w-4 h-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z"></path>
+                              <circle cx="10" cy="10" r="7"></circle>
+                              <line x1="21" y1="21" x2="15" y2="15"></line>
+                          </svg>
+                      </div>
+                      <input class="bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-100 rounded w-full text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-2" type="text" placeholder="Search" />
+                  </div>
+              </div> -->
+          </div>
+
+          <!-- bottom icon -->
+          <div class="px-8 border-t border-gray-300 dark:border-gray-800">
+            <ul class="w-full flex items-center justify-between bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+                <li class="cursor-pointer pt-5 pb-3" v-for="(item, key) in sidebar_bottom_icon" :key="key">
+                    <a :href="item.path" target="_blank" aria-label="show notifications" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                      <font-awesome-icon :icon="item.icon" />
+                    </a>
+                </li>
+                <li class="cursor-pointer pt-5 pb-3" >
+                  <button @click="toggleDarkMode()" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                    <font-awesome-icon :icon="darkMode? ['fas', 'moon']: ['fas', 'sun']" />
+                  </button>
+                </li>
+            </ul>
+          </div>
+      </div>
+
+      <!-- mobile -->
+      <div class="h-screen w-64 z-40 absolute bg-gray-100 dark:bg-gray-900 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out" id="mobile-nav" ref="sideBar">
+          <button aria-label="toggle sidebar" id="openSideBar" ref="openSideBar" class="h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 rounded focus:ring-gray-800 text-white" @click="sidebarHandler(true)">
+            <font-awesome-icon :icon="['fas', 'bars']" class="icon icon-tabler icon-tabler-adjustments" />
           </button>
-          <!-- <p class="inline">　</p> -->
-        </div>
+          <button aria-label="Close sidebar" id="closeSideBar" ref="closeSideBar" class="hidden h-10 w-10 bg-gray-800 absolute right-0 mt-16 -mr-10 flex items-center shadow rounded-tr rounded-br justify-center cursor-pointer text-white" @click="sidebarHandler(false)">
+            <font-awesome-icon :icon="['fas', 'x']" class="icon icon-tabler icon-tabler-adjustments" />
+          </button>
+          <div class="px-8">
+              <div class="h-16 w-full flex items-center text-black dark:text-white">
+                <!-- ICON -->
+                <h1 class="text-xl">
+                  {{ t('site_name') }}
+                </h1>
+              </div>
+              <ul class="mt-12">
+
+                <!-- Navlink -->
+                <li class="flex w-full justify-between text-black dark:text-gray-300 hover:text-gray-500 cursor-pointer items-center mb-6" v-for="(item, key) in nav_list" :key="key">
+                  <router-link
+                    :to="item.path"
+                    class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+                  >
+                    <font-awesome-icon :icon="item.icon" class="text-gray-700" />
+                    <span class="text-sm ml-2">{{ t(`Navbar.`+item.name) }}</span>
+                  </router-link>
+                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">5</div>
+                </li>
+              </ul>
+
+              <!-- Search -->
+              <!-- <div class="flex justify-center mt-48 mb-4 w-full">
+                  <div class="relative">
+                      <div class="text-gray-300 absolute ml-4 inset-0 m-auto w-4 h-4">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z"></path>
+                              <circle cx="10" cy="10" r="7"></circle>
+                              <line x1="21" y1="21" x2="15" y2="15"></line>
+                          </svg>
+                      </div>
+                      <input class="bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-100  rounded w-full text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-2" type="text" placeholder="Search" />
+                  </div>
+              </div> -->
+          </div>
+
+          <!-- bottom icon -->
+          <div class="px-8 border-t border-gray-300 dark:border-gray-800">
+              <ul class="w-full flex items-center justify-between bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+                  <li class="cursor-pointer pt-5 pb-3" v-for="(item, key) in sidebar_bottom_icon" :key="key">
+                      <a :href="item.path"  arget="_blank" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                        <font-awesome-icon :icon="item.icon" class="icon icon-tabler icon-tabler-bell" />
+                      </a>
+                  </li>
+                <li class="cursor-pointer pt-5 pb-3" >
+                  <button @click="toggleDarkMode()" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                    <font-awesome-icon :icon="darkMode? ['fas', 'moon']: ['fas', 'sun']" />
+                  </button>
+                </li>
+              </ul>
+          </div>
+      </div>
+      <!-- Sidebar ends -->
+      <!-- Remove class [ h-64 ] when adding a card block -->
+      <div class="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
+        <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
+        <!-- view -->
+        <section class="w-full text-black dark:text-white">
+          <router-view v-slot="{ Component }">
+            <transition appear
+              @before-enter="
+                (el) => {
+                  el.style.transform = 'translateY(100px)'
+                  el.style.opacity = 0
+                }
+              "
+              @enter="
+                (el, done) => {
+                  gsap.to(el, {
+                    opacity: 1,
+                    duration: 0.5,
+                    y: 0
+                  })
+                }"
+              @leave="
+                (el, done) => {
+                  gsap.to(el, {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: done
+                  })
+                }">
+              <component :is="Component" />
+            </transition>
+          </router-view>
+
+          <vue-progress-bar></vue-progress-bar>
+        </section>
+        <FooterSection></FooterSection>
       </div>
     </div>
-
-    <!-- view -->
-    <section class="mt-5">
-      <router-view v-slot="{ Component }">
-        <transition appear
-          @leave="
-            (el, done) => {
-              gsap.to(el, {
-                opacity: 0,
-                duration: 0.5,
-                onComplete: done
-              })
-            }">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-
-      <vue-progress-bar></vue-progress-bar>
-    </section>
-
-    <FooterSection></FooterSection>
   </div>
 </template>
 <script>
@@ -75,18 +192,62 @@ export default {
       darkMode: false,
       nav_list: [
         {
-          name: '主頁',
+          name: 'HomePage',
+          icon: ['fas', 'home'],
           path: '/'
         },
         {
-          name: '點歌',
-          path: '/order'
+          name: 'Order',
+          icon: ['fas', 'shopping-cart'],
+          path: '/order/new'
+        },
+        {
+          name: 'Rule',
+          icon: ['fas', 'book'],
+          path: '/rule'
+        },
+        {
+          name: 'Settings',
+          icon: ['fas', 'cog'],
+          path: '/setting'
+        }
+      ],
+      sidebar_bottom_icon: [
+        {
+          name: 'Github',
+          icon: ['fab', 'github'],
+          path: 'https://github.com/mmm25002500'
+        },
+        {
+          name: 'Facebook',
+          icon: ['fab', 'facebook'],
+          path: 'https://facebook.com/TershiXia'
+        },
+        {
+          name: 'Twitter',
+          icon: ['fab', 'twitter'],
+          path: 'https://twitter.com/TershiXia'
+        },
+        {
+          name: 'Instagram',
+          icon: ['fab', 'instagram'],
+          path: 'https://instagram.com/TershiXia'
         }
       ]
     }
   },
   methods: {
-
+    sidebarHandler(flag) {
+      if (flag) {
+        this.sideBar.style.transform = 'translateX(0px)'
+        this.openSideBar.classList.add('hidden')
+        this.closeSideBar.classList.remove('hidden')
+      } else {
+        this.sideBar.style.transform = 'translateX(-260px)'
+        this.closeSideBar.classList.add('hidden')
+        this.openSideBar.classList.remove('hidden')
+      }
+    },
     // 切換 dark mode & light mode
     toggleDarkMode() {
       this.darkMode = !this.darkMode
@@ -131,11 +292,20 @@ export default {
       } else {
         document.documentElement.classList.remove('dark')
       }
+    },
+    locale: function(val) {
+      localStorage.setItem('locale', val)
     }
   },
   mounted() {
     //  [App.vue specific] When App.vue is finish loading finish the progress bar
     this.$Progress.finish()
+
+    // Sidebar
+    this.sideBar = this.$refs.sideBar
+    this.openSideBar = this.$refs.openSideBar
+    this.closeSideBar = this.$refs.closeSideBar
+    this.sideBar.style.transform = 'translateX(-260px)'
   },
   created() {
     if (localStorage.darkMode === 'true') {

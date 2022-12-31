@@ -1,5 +1,63 @@
 {
+    "site_name": "YouTube 點歌系統",
+    "Navbar": {
+        "HomePage": "主頁",
+        "Order": "點歌",
+        "Rule": "台規",
+        "Settings": "設定"
+    },
+    "HomePage": {
+        "title": "主頁"
+    },
+    "OrderPage": {
+        "title": "點歌",
+        "form": {
+            "username": {
+                "label": "使用者名稱",
+                "placeholder": "請輸入你的使用者名稱"
+            },
+            "youtuber": {
+                "label": "YouTuber",
+                "placeholder": "請輸入您要點歌的 YouTuber"
+            },
+            "email": {
+                "label": "電子郵件",
+                "placeholder": "your@gmail.com"
+            },
+            "address": {
+                "label": "地址",
+                "placeholder": "https://www.youtube.com/watch?v=ID"
+            },
+            "agree": "我同意",
+            "policy_rule": "社群規範和台規",
+            "order_song": "點歌"
+        }
+    },
+    "RulePage": {
+        "title": "台規",
+        "description": "You can see the rule in here"
+    },
+    "ChangeLog": {
+        "title": "Change Log"
+    },
+    "Settings": {
+        "title": "設定",
+        "ChangeLog": {
+            "title": "更新日誌",
+            "description": "你可以從這裡查看我網站的更新日誌。"
+        },
+        "Themes": {
+            "title": "主題",
+            "description": "你可以從這裡選擇你喜歡的主題來作為我的網站的主要色調。",
+            "light": "亮色模式",
+            "dark": "暗色模式"
+        },
+        "language": {
+            "title": "語言",
+            "description": "你可以從這裡選擇你喜歡的語言來作為我的網站的語言。"
+        }
+    },
     "Footer": {
-        "sitename": "夏特稀"
+        "sitename": "TershiXia"
     }
 }

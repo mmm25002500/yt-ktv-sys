@@ -1,4 +1,62 @@
 {
+    "site_name": "YouTube Song Order System",
+    "Navbar": {
+        "HomePage": "Home",
+        "Order": "Order",
+        "Rule": "Rules",
+        "Settings": "Settings"
+    },
+    "HomePage": {
+        "title": "Home"
+    },
+    "OrderPage": {
+        "title": "Order",
+        "form": {
+            "username": {
+                "label": "Username",
+                "placeholder": "Enter your username"
+            },
+            "youtuber": {
+                "label": "Youtuber",
+                "placeholder": "Enter the youtuber name"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "your@gmail.com"
+            },
+            "address": {
+                "label": "Address",
+                "placeholder": "https://www.youtube.com/watch?v=ID"
+            },
+            "agree": "I agree",
+            "policy_rule": "Community Guidelines and Terms of Service",
+            "order_song": "Order Song"
+        }
+    },
+    "RulePage": {
+        "title": "Rules",
+        "description": "You can see the rule in here"
+    },
+    "ChangeLog": {
+        "title": "Change Log"
+    },
+    "Settings": {
+        "title": "Settings",
+        "ChangeLog": {
+            "title": "Change Log",
+            "description": "You can see updates in here"
+        },
+        "Themes": {
+            "title": "Themes",
+            "description": "You can choose a theme for my website.",
+            "light": "Light Mode",
+            "dark": "Dark Mode"
+        },
+        "language": {
+            "title": "Language",
+            "description": "You can choose a language for my website."
+        }
+    },
     "Footer": {
         "sitename": "TershiXia"
     }
