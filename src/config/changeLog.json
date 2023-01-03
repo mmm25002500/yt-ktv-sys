@@ -2,7 +2,7 @@
     {
         "version": "1.4",
         "description": "建構專案",
-        "date": "2023/01/01",
+        "date": "2023/01/03",
         "content": [
             "Bug: 修復點歌頁面無法顯示",
             "Bug: 修復 sidebar 數字按不下",
