@@ -22,11 +22,15 @@
             },
             "email": {
                 "label": "Email",
-                "placeholder": "your@gmail.com"
+                "placeholder": "Enter your email"
             },
             "address": {
                 "label": "Address",
                 "placeholder": "https://www.youtube.com/watch?v=ID"
+            },
+            "toast": {
+                "success": "Order Success",
+                "error": "Order Error"
             },
             "agree": "I agree",
             "policy_rule": "Community Guidelines and Terms of Service",

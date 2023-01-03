@@ -21,13 +21,15 @@
                   <li class="flex w-full justify-between dark:text-gray-300 cursor-pointer items-center mb-6" v-for="(item, key) in nav_list" :key="key">
                     <router-link
                       :to="item.path"
-                      class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+                      class="w-full items-center"
                       >
                         <!-- icon: class="icon icon-tabler icon-tabler-grid" width="18" height="18"  -->
                         <font-awesome-icon :icon="item.icon" class="text-gray-700" />
                         <span class="text-sm ml-2">{{ t(`Navbar.`+item.name) }}</span>
-                    </router-link>
-                    <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">5</div>
+                        <div v-if="item.number" class="py-1 px-3 bg-gray-600 text-right float-right rounded text-gray-300 items-center justify-center text-xs">
+                          {{ item.number }}
+                        </div>
+                      </router-link>
                   </li>
               </ul>
 
@@ -50,12 +52,12 @@
           <div class="px-8 border-t border-gray-300 dark:border-gray-800">
             <ul class="w-full flex items-center justify-between bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
                 <li class="cursor-pointer pt-5 pb-3" v-for="(item, key) in sidebar_bottom_icon" :key="key">
-                    <a :href="item.path" target="_blank" aria-label="show notifications" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                    <a :href="item.path" target="_blank" aria-label="show notifications" class="rounded">
                       <font-awesome-icon :icon="item.icon" />
                     </a>
                 </li>
                 <li class="cursor-pointer pt-5 pb-3" >
-                  <button @click="toggleDarkMode()" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
+                  <button @click="toggleDarkMode()" class="rounded">
                     <font-awesome-icon :icon="darkMode? ['fas', 'moon']: ['fas', 'sun']" />
                   </button>
                 </li>
@@ -84,12 +86,14 @@
                 <li class="flex w-full justify-between text-black dark:text-gray-300 hover:text-gray-500 cursor-pointer items-center mb-6" v-for="(item, key) in nav_list" :key="key">
                   <router-link
                     :to="item.path"
-                    class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+                    class="flex items-center"
                   >
                     <font-awesome-icon :icon="item.icon" class="text-gray-700" />
                     <span class="text-sm ml-2">{{ t(`Navbar.`+item.name) }}</span>
                   </router-link>
-                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">5</div>
+                  <div v-if="item.number" class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">
+                    {{ item.number }}
+                  </div>
                 </li>
               </ul>
 
@@ -194,6 +198,7 @@ export default {
         {
           name: 'HomePage',
           icon: ['fas', 'home'],
+          number: 87,
           path: '/'
         },
         {

@@ -23,6 +23,11 @@ const routes = [
     component: () => import('../views/SettingPage.vue')
   },
   {
+    path: '/changes',
+    name: '更新日誌',
+    component: () => import('../views/ChangeLog.vue')
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'ERR 404 找不到頁面ㄛ',
     component: () => import('../views/NotFound.vue')

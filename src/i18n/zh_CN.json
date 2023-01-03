@@ -22,11 +22,15 @@
             },
             "email": {
                 "label": "电子邮件",
-                "placeholder": "your@gmail.com"
+                "placeholder": "请输入您的电子邮件"
             },
             "address": {
                 "label": "地址",
                 "placeholder": "https://www.youtube.com/watch?v=ID"
+            },
+            "toast": {
+                "success": "点歌成功",
+                "error": "点歌失败"
             },
             "agree": "我同意",
             "policy_rule": "社群规范和台规",
