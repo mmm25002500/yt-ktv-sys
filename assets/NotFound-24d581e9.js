@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as s,d as o}from"./index-7b14b15d.js";const n={data(){return{}},mounted(){this.$Progress.finish()}},c=o("p",{class:"text-center"},"找不到頁面喔",-1),r=[c];function a(_,d,i,p,u,f){return s(),t("div",null,r)}const h=e(n,[["render",a]]);export{h as default};

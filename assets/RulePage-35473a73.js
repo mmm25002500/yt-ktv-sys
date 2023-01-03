@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as s,d as o}from"./index-e45e8680.js";const a={data(){return{}},mounted(){this.$Progress.finish()}},c=o("h1",{class:"text-xl"},"歡迎來到台規",-1),n=[c];function r(_,d,i,l,p,u){return s(),t("div",null,n)}const h=e(a,[["render",r]]);export{h as default};
